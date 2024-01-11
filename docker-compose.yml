@@ -1,0 +1,19 @@
+version: '3.8'
+
+services:
+  db:
+    image: mariadb:11.2
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+      MYSQL_DATABASE: medcury-de
+      MYSQL_USER: user
+      MYSQL_PASSWORD: passwordmed
+    volumes:
+      - data:/var/lib/mysql
+      - ./dev/mariadb:/docker-entrypoint-initdb.d
+      - ./Data_Source:/usr/local/src/Data_Source
+    ports:
+      - 3306:3306
+
+volumes:
+  data:
